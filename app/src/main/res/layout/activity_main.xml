@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.denzcoskun.imageslider.ImageSlider
+        android:id="@+id/carousel"
+        android:layout_width="wrap_content"
+        android:layout_height="280dp"
+        app:iss_auto_cycle="true"
+        app:iss_delay="0"
+        app:iss_corner_radius="60"
+        app:iss_period="1500"
+        android:layout_marginTop="-12dp"/>
+
+    <TextView
+        android:id="@+id/txtLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/carousel"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="Log in"
+        android:textColor="@color/white"
+        android:textSize="48sp" />
+
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/txtLogin"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/corner_radius"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="8dp"
+        android:textColorHint="@color/gray"
+        tools:ignore="TextContrastCheck"
+        android:drawableLeft="@drawable/email"
+        android:drawablePadding="12dp"
+        android:fontFamily="@font/montserrat_medium"
+        />
+
+    <EditText
+        android:id="@+id/editPassword"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/editEmail"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/corner_radius"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:paddingLeft="8dp"
+        android:textColorHint="@color/gray"
+        tools:ignore="TextContrastCheck"
+        android:drawableLeft="@drawable/password"
+        android:drawablePadding="12dp"
+        android:fontFamily="@font/montserrat_medium"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editPassword"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/button_radius"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textSize="20sp"/>
+</RelativeLayout>
