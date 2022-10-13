@@ -145,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 editEmail.setText("");
                 editPassword.setText("");
+                editEmail.requestFocus(1);
             }
         });
     }

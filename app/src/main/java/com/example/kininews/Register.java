@@ -123,6 +123,7 @@ public class Register extends AppCompatActivity {
                 editEmail.setText("");
                 editPassword.setText("");
                 editRepeatPassword.setText("");
+                editEmail.requestFocus(1);
             }
         });
     }
