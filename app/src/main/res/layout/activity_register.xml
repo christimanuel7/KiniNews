@@ -15,13 +15,15 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="-12dp">
+            android:paddingStart="-12dp"
+            android:paddingEnd="0dp">
             <ImageButton
                 android:id="@+id/btnCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:src="@drawable/ic_baseline_clear_24"
                 android:backgroundTint="@color/secondary"
+                android:contentDescription="@string/desc_cancel"
                 />
 
             <ImageView
@@ -29,7 +31,8 @@
                 android:layout_height="48dp"
                 android:layout_toEndOf="@id/btnCancel"
                 android:src="@drawable/logo"
-                android:layout_marginLeft="124dp"/>
+                android:layout_marginStart="124dp"
+                android:contentDescription="@string/desc_imgAppLogo"/>
 
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
@@ -42,7 +45,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/montserrat_semibold"
-        android:text="Daftar"
+        android:text="@string/txtRegister"
         android:textColor="@color/white"
         android:textSize="40sp" />
 
@@ -58,12 +61,12 @@
         android:bottomLeftRadius="8dp"
         android:bottomRightRadius="8dp"
         android:drawableEnd="@drawable/ic_baseline_refresh_24"
-        android:text="Clear"
-        android:textAllCaps="false"
-        android:topLeftRadius="8dp"
-        android:topRightRadius="8dp"
         android:fontFamily="@font/montserrat_medium"
-        android:textColor="@color/white"/>
+        android:text="@string/txtClear"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:topLeftRadius="8dp"
+        android:topRightRadius="8dp" />
 
     <EditText
         android:id="@+id/editUserName"
@@ -77,12 +80,14 @@
         android:drawableStart="@drawable/username"
         android:drawablePadding="12dp"
         android:fontFamily="@font/montserrat_medium"
-        android:hint="Username"
+        android:hint="@string/editUsername"
         android:inputType="textPersonName"
         android:paddingStart="8dp"
+        android:paddingEnd="0dp"
         android:textColorHint="@color/gray"
         tools:ignore="TextContrastCheck"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:autofillHints="username"/>
 
     <EditText
         android:id="@+id/editFullName"
@@ -93,15 +98,17 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/corner_radius"
-        android:hint="Full Name"
+        android:hint="@string/editFullname"
         android:inputType="textPersonName"
         android:paddingStart="8dp"
+        android:paddingEnd="0dp"
         android:textColorHint="@color/gray"
         tools:ignore="TextContrastCheck"
         android:drawableStart="@drawable/fullname"
         android:drawablePadding="12dp"
         android:fontFamily="@font/montserrat_medium"
         android:textColor="@color/black"
+        android:autofillHints="name"
         />
 
 
@@ -117,12 +124,14 @@
         android:drawableStart="@drawable/email"
         android:drawablePadding="12dp"
         android:fontFamily="@font/montserrat_medium"
-        android:hint="Email"
+        android:hint="@string/editEmail"
         android:inputType="textEmailAddress"
         android:paddingStart="8dp"
+        android:paddingEnd="0dp"
         android:textColorHint="@color/gray"
         tools:ignore="TextContrastCheck"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:autofillHints="emailAddress"/>
 
     <EditText
         android:id="@+id/editPassword"
@@ -136,12 +145,14 @@
         android:drawableStart="@drawable/password"
         android:drawablePadding="12dp"
         android:fontFamily="@font/montserrat_medium"
-        android:hint="Password"
+        android:hint="@string/editPassword"
         android:inputType="textPassword"
         android:paddingStart="8dp"
+        android:paddingEnd="0dp"
         android:textColorHint="@color/gray"
         tools:ignore="TextContrastCheck"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:autofillHints="password"/>
 
     <EditText
         android:id="@+id/editRepeatPassword"
@@ -155,15 +166,17 @@
         android:drawableStart="@drawable/password"
         android:drawablePadding="12dp"
         android:fontFamily="@font/montserrat_medium"
-        android:hint="Repeat Password"
+        android:hint="@string/editRepeatPassword"
         android:inputType="textPassword"
         android:paddingStart="8dp"
+        android:paddingEnd="0dp"
         android:textColorHint="@color/gray"
         tools:ignore="TextContrastCheck"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:autofillHints="password"/>
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/editRepeatPassword"
@@ -172,30 +185,30 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/button_radius"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Daftar"
+        android:text="@string/btnRegister"
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:textSize="20sp"
         app:backgroundTint="@color/deep"/>
 
     <TextView
-        android:id="@+id/txtHelpRegister"
+        android:id="@+id/txtHelpLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnLogin"
-        android:layout_marginLeft="96dp"
+        android:layout_below="@id/btnRegister"
+        android:layout_marginStart="96dp"
         android:layout_marginTop="60dp"
         android:fontFamily="@font/montserrat_light"
-        android:text="Sudah memiliki akun? " />
+        android:text="@string/txtHelpLogin" />
 
     <TextView
-        android:id="@+id/btnRegister"
+        android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnLogin"
+        android:layout_below="@id/btnRegister"
         android:layout_marginTop="60dp"
+        android:layout_toEndOf="@id/txtHelpLogin"
         android:fontFamily="@font/montserrat_medium"
-        android:layout_toEndOf="@id/txtHelpRegister"
-        android:text="Masuk" />
+        android:text="@string/btnTextLogin" />
 
 </RelativeLayout>

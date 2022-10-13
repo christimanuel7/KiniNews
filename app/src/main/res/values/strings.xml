@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Kini News</string>
+    <string name="desc_splash">Starting App</string>
+    <string name="txtLogin">Masuk</string>
+    <string name="desc_cancel">Quit Application</string>
+    <string name="desc_imgAppLogo">Kini News App Logo</string>
+    <string name="txtClear">Clear</string>
+    <string name="editEmail">E-mail</string>
+    <string name="editPassword">Password</string>
+    <string name="showPassword">Tampilkan kata sandi</string>
+    <string name="btnLogin">Masuk</string>
+    <string name="txtHelpRegister">Tidak memiliki akun?</string>
+    <string name="btnTextRegister">Daftar Akun</string>
+
+    <string name="txtRegister">Daftar</string>
+    <string name="editUsername">Username</string>
+    <string name="editFullname">Full Name</string>
+    <string name="editRepeatPassword">Password</string>
+    <string name="btnRegister">Daftar</string>
+    <string name="txtHelpLogin">Sudah memiliki akun?</string>
+    <string name="btnTextLogin">Masuk</string>
 </resources>

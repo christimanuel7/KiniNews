@@ -14,5 +14,5 @@
         app:srcCompat="@mipmap/ic_launcher_foreground"
         tools:layout_editor_absoluteX="119dp"
         tools:layout_editor_absoluteY="308dp"
-        android:contentDescription="Starting App"/>
+        android:contentDescription="@string/desc_splash"/>
 </RelativeLayout>
