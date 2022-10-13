@@ -13,5 +13,6 @@
         android:layout_centerInParent="true"
         app:srcCompat="@mipmap/ic_launcher_foreground"
         tools:layout_editor_absoluteX="119dp"
-        tools:layout_editor_absoluteY="308dp" />
+        tools:layout_editor_absoluteY="308dp"
+        android:contentDescription="Starting App"/>
 </RelativeLayout>

@@ -15,7 +15,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="-12dp">
+            android:paddingLeft="-12dp">
             <ImageButton
                 android:id="@+id/btnCancel"
                 android:layout_width="wrap_content"
@@ -29,20 +29,20 @@
                 android:layout_height="48dp"
                 android:layout_toEndOf="@id/btnCancel"
                 android:src="@drawable/logo"
-                android:layout_marginStart="124dp"/>
+                android:layout_marginLeft="124dp"/>
 
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
-        android:id="@+id/txtLogin"
+        android:id="@+id/txtRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/carousel"
+        android:layout_below="@id/toolbar"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/montserrat_semibold"
-        android:text="Masuk"
+        android:text="Daftar"
         android:textColor="@color/white"
         android:textSize="40sp" />
 
@@ -50,47 +50,79 @@
         android:id="@+id/btnClear"
         android:layout_width="wrap_content"
         android:layout_height="52dp"
-        android:layout_below="@id/carousel"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="20dp"
-        android:layout_toEndOf="@id/txtLogin"
-        android:backgroundTint="@color/yellow"
-        android:drawableStart="@drawable/ic_baseline_refresh_24"
-        android:bottomRightRadius="12dp"
-        android:bottomLeftRadius="12dp"
-        android:topLeftRadius="12dp"
-        android:topRightRadius="12dp"
-        android:text="Clear"
-        android:textAllCaps="false"/>
-
-    <com.denzcoskun.imageslider.ImageSlider
-        android:id="@+id/carousel"
-        android:layout_width="wrap_content"
-        android:layout_height="268dp"
         android:layout_below="@id/toolbar"
-        app:iss_auto_cycle="true"
-        app:iss_delay="0"
-        app:iss_period="1500" />
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="40dp"
+        android:layout_toEndOf="@id/txtRegister"
+        android:backgroundTint="@color/yellow"
+        android:bottomLeftRadius="8dp"
+        android:bottomRightRadius="8dp"
+        android:drawableEnd="@drawable/ic_baseline_refresh_24"
+        android:text="Clear"
+        android:textAllCaps="false"
+        android:topLeftRadius="8dp"
+        android:topRightRadius="8dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/white"/>
+
+    <EditText
+        android:id="@+id/editUserName"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/txtRegister"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/corner_radius"
+        android:drawableStart="@drawable/username"
+        android:drawablePadding="12dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        android:paddingStart="8dp"
+        android:textColorHint="@color/gray"
+        tools:ignore="TextContrastCheck"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/editFullName"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/editUserName"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/corner_radius"
+        android:hint="Full Name"
+        android:inputType="textPersonName"
+        android:paddingStart="8dp"
+        android:textColorHint="@color/gray"
+        tools:ignore="TextContrastCheck"
+        android:drawableStart="@drawable/fullname"
+        android:drawablePadding="12dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/black"
+        />
+
 
     <EditText
         android:id="@+id/editEmail"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@id/txtLogin"
+        android:layout_below="@id/editFullName"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/corner_radius"
-        android:hint="E-mail"
+        android:drawableStart="@drawable/email"
+        android:drawablePadding="12dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:hint="Email"
         android:inputType="textEmailAddress"
         android:paddingStart="8dp"
         android:textColorHint="@color/gray"
         tools:ignore="TextContrastCheck"
-        android:drawableStart="@drawable/email"
-        android:drawablePadding="12dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:textColor="@color/black"
-        />
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/editPassword"
@@ -101,38 +133,46 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/corner_radius"
+        android:drawableStart="@drawable/password"
+        android:drawablePadding="12dp"
+        android:fontFamily="@font/montserrat_medium"
         android:hint="Password"
         android:inputType="textPassword"
         android:paddingStart="8dp"
         android:textColorHint="@color/gray"
         tools:ignore="TextContrastCheck"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/editRepeatPassword"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/editPassword"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/corner_radius"
         android:drawableStart="@drawable/password"
         android:drawablePadding="12dp"
         android:fontFamily="@font/montserrat_medium"
+        android:hint="Repeat Password"
+        android:inputType="textPassword"
+        android:paddingStart="8dp"
+        android:textColorHint="@color/gray"
+        tools:ignore="TextContrastCheck"
         android:textColor="@color/black"/>
-
-    <CheckBox
-        android:id="@+id/showPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editPassword"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:text="Tampilkan kata sandi" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/showPassword"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_below="@id/editRepeatPassword"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/button_radius"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Login"
+        android:text="Daftar"
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:textSize="20sp"
@@ -143,19 +183,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/btnLogin"
-        android:layout_marginTop="40dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/montserrat_light"
-        android:layout_marginStart="80dp"
-        android:text="Tidak memiliki akun? " />
+        android:text="Sudah memiliki akun? " />
 
     <TextView
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/btnLogin"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/montserrat_medium"
         android:layout_toEndOf="@id/txtHelpRegister"
-        android:text="Daftar Akun" />
+        android:text="Masuk" />
 
 </RelativeLayout>

@@ -13,6 +13,7 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+//        MEMUNCULKAN SPLASH PAGE SELAMA 1500 ms, LANJUT LOGIN INTENT
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
