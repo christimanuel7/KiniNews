@@ -1,5 +1,6 @@
 package com.example.kininews;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -13,15 +14,23 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    //MEMBUAT OBJEK DATABASE REFERENCE UNTUK MENGAKSES FIREBASE REALTIME DB
+    DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReferenceFromUrl("https://uts-kelompok-2-3e365-default-rtdb.firebaseio.com/");
 
     Toolbar toolbar;
     TextView btnRegister;
@@ -58,8 +67,46 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent home = new Intent(MainActivity.this, Home.class);
-                startActivity(home);
+                String emailTxt=editEmail.getText().toString();
+                String passwordTxt=editPassword.getText().toString();
+
+                if(emailTxt.isEmpty()||passwordTxt.isEmpty()){
+                    Toast.makeText(MainActivity.this,"Mohon masukkan kembali username dan password anda",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    databaseReference.child("tbUser").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            //MENGECEK USERNAME ADA DIDATABASE ATAU TIDAK
+                            if(snapshot.hasChild(emailTxt)){
+                                //MENGECEK KECOCOKAN USERNAME DAN PASSWORD DI DB
+                                String getUsername=snapshot.child(emailTxt).child("username").getValue(String.class);
+                                String getPassword=snapshot.child(emailTxt).child("password").getValue(String.class);
+
+                                if(getPassword.equals(passwordTxt)){
+                                    Toast.makeText(MainActivity.this,"Login Berhasil",Toast.LENGTH_SHORT).show();
+
+                                    //MEMBUKA ACTIVITY HOME
+                                    Intent home = new Intent(MainActivity.this, Home.class);
+                                    String name = getUsername;
+                                    home.putExtra("fullName", name);
+                                    startActivity(home);
+                                }
+                                else{
+                                    Toast.makeText(MainActivity.this,"Mohon masukkan username dan password yang benar",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else{
+                                Toast.makeText(MainActivity.this,"Mohon masukkan username dan password yang benar",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
             }
         });
 
