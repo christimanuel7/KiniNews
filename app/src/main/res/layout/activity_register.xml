@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/montserrat_semibold"
         android:text="@string/txtRegister"
         android:textColor="@color/white"
@@ -55,7 +55,7 @@
         android:layout_height="52dp"
         android:layout_below="@id/toolbar"
         android:layout_marginStart="116dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="80dp"
         android:layout_toEndOf="@id/txtRegister"
         android:backgroundTint="@color/yellow"
         android:bottomLeftRadius="8dp"
@@ -69,56 +69,12 @@
         android:topRightRadius="8dp" />
 
     <EditText
-        android:id="@+id/editUserName"
+        android:id="@+id/editEmail"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_below="@id/txtRegister"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/corner_radius"
-        android:drawableStart="@drawable/username"
-        android:drawablePadding="12dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:hint="@string/editUsername"
-        android:inputType="textPersonName"
-        android:paddingStart="8dp"
-        android:paddingEnd="0dp"
-        android:textColorHint="@color/gray"
-        tools:ignore="TextContrastCheck"
-        android:textColor="@color/black"
-        android:autofillHints="username"/>
-
-    <EditText
-        android:id="@+id/editFullName"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_below="@id/editUserName"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/corner_radius"
-        android:hint="@string/editFullname"
-        android:inputType="textPersonName"
-        android:paddingStart="8dp"
-        android:paddingEnd="0dp"
-        android:textColorHint="@color/gray"
-        tools:ignore="TextContrastCheck"
-        android:drawableStart="@drawable/fullname"
-        android:drawablePadding="12dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:textColor="@color/black"
-        android:autofillHints="name"
-        />
-
-
-    <EditText
-        android:id="@+id/editEmail"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_below="@id/editFullName"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/corner_radius"
         android:drawableStart="@drawable/email"
@@ -137,7 +93,7 @@
         android:id="@+id/editPassword"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@id/editEmail"
+        android:layout_below="@id/editFullName"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
@@ -153,6 +109,27 @@
         tools:ignore="TextContrastCheck"
         android:textColor="@color/black"
         android:autofillHints="password"/>
+
+    <EditText
+        android:id="@+id/editFullName"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/editEmail"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/corner_radius"
+        android:drawableStart="@drawable/fullname"
+        android:drawablePadding="12dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:hint="@string/editFullname"
+        android:inputType="textPersonName"
+        android:paddingStart="8dp"
+        android:paddingEnd="0dp"
+        android:textColorHint="@color/gray"
+        tools:ignore="TextContrastCheck"
+        android:textColor="@color/black"
+        android:autofillHints="Nama Lengkap"/>
 
     <EditText
         android:id="@+id/editRepeatPassword"
@@ -173,7 +150,7 @@
         android:textColorHint="@color/gray"
         tools:ignore="TextContrastCheck"
         android:textColor="@color/black"
-        android:autofillHints="password"/>
+        android:autofillHints="repeat password"/>
 
     <Button
         android:id="@+id/btnRegister"
@@ -181,7 +158,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editRepeatPassword"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="100dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/button_radius"
         android:fontFamily="@font/montserrat_bold"

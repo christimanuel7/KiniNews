@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,13 +28,14 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Register extends AppCompatActivity {
     //MEMBUAT OBJEK DATABASE REFERENCE UNTUK MENGAKSES FIREBASE REALTIME DB
-    DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReferenceFromUrl("https://uts-kelompok-2-3e365-default-rtdb.firebaseio.com/");
 
-    Toolbar toolbar;
-    TextView btnLogin;
-    Button btnRegister,btnClear;
-    EditText editFullName, editUserName, editEmail, editPassword, editRepeatPassword;
-    ImageButton btnCancel;
+    private FirebaseAuth mAuth;
+    private Toolbar toolbar;
+    private TextView btnLogin;
+    private Button btnRegister,btnClear;
+    private EditText  editEmail, editFullName, editPassword, editRepeatPassword;
+    private ImageButton btnCancel;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +44,8 @@ public class Register extends AppCompatActivity {
 
         toolbar=findViewById(R.id.toolbar);
         btnCancel=findViewById(R.id.btnCancel);
-        editUserName=findViewById(R.id.editUserName);
-        editFullName=findViewById(R.id.editFullName);
         editEmail=findViewById(R.id.editEmail);
+        editFullName=findViewById(R.id.editFullName);
         editPassword=findViewById(R.id.editPassword);
         editRepeatPassword=findViewById(R.id.editRepeatPassword);
         btnRegister=findViewById(R.id.btnRegister);
@@ -47,53 +54,35 @@ public class Register extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
+        mAuth=FirebaseAuth.getInstance();
+        progressDialog=new ProgressDialog(Register.this);
+
+        progressDialog.setTitle("Loading");
+        progressDialog.setMessage("Mohon menunggu sebentar");
+        progressDialog.setCancelable(false);
+
 //        LOGIN REGISTER DAN MASUK KE LOGIN MAIN ACTIVITY
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //GET DATA DARI EDITTEXT KE STRING VARIABLES
-                String usernameTxt=editUserName.getText().toString();
                 String fullNameTxt=editFullName.getText().toString();
                 String emailTxt=editEmail.getText().toString();
                 String passwordTxt=editPassword.getText().toString();
                 String repeatPasswordTxt=editRepeatPassword.getText().toString();
 
                 //MENGECEK PENGISIAN SUDAH DIISI SEMUA SEBELUM MASUK FIREBASE
-                if(fullNameTxt.isEmpty() || emailTxt.isEmpty()|| usernameTxt.isEmpty()|| passwordTxt.isEmpty()|| repeatPasswordTxt.isEmpty()){
+                if(fullNameTxt.isEmpty() || emailTxt.isEmpty()||  passwordTxt.isEmpty()|| repeatPasswordTxt.isEmpty()){
                     Toast.makeText(Register.this,"Mohon dilengkapi isi semua kolom register",Toast.LENGTH_SHORT).show();
                 }
 
                 //MENGECEK PASSWORD SAMA DENGAN REPEAT PASSWORD
                 if(!passwordTxt.equals(repeatPasswordTxt)){
-                    Toast.makeText(Register.this,"Password tidak sesuai dengan repeat password",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Register.this,"Password tidak sesuai dengan ulang password",Toast.LENGTH_SHORT).show();
                 }
 
                 else{
-                    databaseReference.child("tbUser").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            //MENGECEK JIKA USERNAME TIDAK TERDAFTAR SEBELUMNYA
-                            if(snapshot.hasChild(usernameTxt)){
-                                Toast.makeText(Register.this,"Username sudah didaftarkan",Toast.LENGTH_SHORT).show();
-                            }
-                            else{
-                                //MENGIRIM DATA YANG DIISI KE FIREBASE KE DB REALTIME FIREBASE
-                                //USERNAME UNIQUE VALUE
-                                databaseReference.child("tbUser").child(usernameTxt) .child("fullName").setValue(fullNameTxt);
-                                databaseReference.child("tbUser").child(usernameTxt) .child("email").setValue(emailTxt);
-                                databaseReference.child("tbUser").child(usernameTxt) .child("password").setValue(passwordTxt);
-
-                                Intent login = new Intent(Register.this, MainActivity.class);
-//                                login.putExtra("Username", usernameTxt);
-                                startActivity(login);
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
+                    register(emailTxt,fullNameTxt,passwordTxt);
                 }
             }
         });
@@ -118,13 +107,53 @@ public class Register extends AppCompatActivity {
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editUserName.setText("");
-                editFullName.setText("");
                 editEmail.setText("");
                 editPassword.setText("");
                 editRepeatPassword.setText("");
                 editEmail.requestFocus(1);
             }
         });
+    }
+
+    private void register(String email, String fullName,  String password){
+        progressDialog.show();
+        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful() && task.getResult()!=null){
+                    FirebaseUser firebaseUser=task.getResult().getUser();
+                    if(firebaseUser!=null) {
+                        UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(fullName)
+                                .build();
+                        firebaseUser.updateProfile(request).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                reload();
+                            }
+                        });
+                    }else{
+                        Toast.makeText(getApplicationContext(), "Registrasi Gagal",Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(getApplicationContext(), task.getException().getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void reload() {
+        Intent login = new Intent(Register.this, MainActivity.class);
+        startActivity(login);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            reload();
+        }
     }
 }

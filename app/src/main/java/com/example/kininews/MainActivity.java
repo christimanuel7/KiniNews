@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -19,6 +21,11 @@ import android.widget.Toast;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,15 +36,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    //MEMBUAT OBJEK DATABASE REFERENCE UNTUK MENGAKSES FIREBASE REALTIME DB
-    DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReferenceFromUrl("https://uts-kelompok-2-3e365-default-rtdb.firebaseio.com/");
 
-    Toolbar toolbar;
-    TextView btnRegister;
-    Button btnLogin,btnClear;
-    EditText editEmail, editPassword;
-    ImageButton btnCancel;
-    CheckBox showPassword;
+    private ProgressDialog progressDialog;
+    private FirebaseAuth mAuth;
+    private Toolbar toolbar;
+    private TextView btnRegister;
+    private Button btnLogin,btnClear;
+    private EditText editEmail, editPassword;
+    private ImageButton btnCancel;
+    private CheckBox showPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +60,22 @@ public class MainActivity extends AppCompatActivity {
         btnClear=findViewById(R.id.btnClear);
         btnRegister=findViewById(R.id.btnRegister);
 
+        progressDialog=new ProgressDialog(MainActivity.this);
+
+        mAuth=FirebaseAuth.getInstance();
+
         setSupportActionBar(toolbar);
+
+        progressDialog.setTitle("Loading");
+        progressDialog.setMessage("Mohon menunggu sebentar");
+        progressDialog.setCancelable(false);
 
         ImageSlider carousel=findViewById(R.id.carousel);
 
         List<SlideModel> slideModels=new ArrayList<>();
-        slideModels.add(new SlideModel(R.drawable.cepat,"1", ScaleTypes.FIT));
-        slideModels.add(new SlideModel(R.drawable.akurat,"2", ScaleTypes.FIT));
-        slideModels.add(new SlideModel(R.drawable.kredibel,"3", ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.cepat,"Menyajikan berita terkini secara cepat", ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.akurat,"Menyajikan informasi berita yang akurat", ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.kredibel,"Menyajikan informasi dari sumber yang kredibel", ScaleTypes.FIT));
         carousel.setImageList(slideModels);
 
 //        LOGIN AKUN DAN MASUK KE HOME ACTIVITY
@@ -71,41 +86,10 @@ public class MainActivity extends AppCompatActivity {
                 String passwordTxt=editPassword.getText().toString();
 
                 if(emailTxt.isEmpty()||passwordTxt.isEmpty()){
-                    Toast.makeText(MainActivity.this,"Mohon masukkan kembali username dan password anda",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"Email dan Password yang anda masukkan kosong",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    databaseReference.child("tbUser").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            //MENGECEK USERNAME ADA DIDATABASE ATAU TIDAK
-                            if(snapshot.hasChild(emailTxt)){
-                                //MENGECEK KECOCOKAN USERNAME DAN PASSWORD DI DB
-                                String getUsername=snapshot.child(emailTxt).child("username").getValue(String.class);
-                                String getPassword=snapshot.child(emailTxt).child("password").getValue(String.class);
-
-                                if(getPassword.equals(passwordTxt)){
-                                    Toast.makeText(MainActivity.this,"Login Berhasil",Toast.LENGTH_SHORT).show();
-
-                                    //MEMBUKA ACTIVITY HOME
-                                    Intent home = new Intent(MainActivity.this, Home.class);
-                                    String name = getUsername;
-                                    home.putExtra("fullName", name);
-                                    startActivity(home);
-                                }
-                                else{
-                                    Toast.makeText(MainActivity.this,"Mohon masukkan username dan password yang benar",Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                            else{
-                                Toast.makeText(MainActivity.this,"Mohon masukkan username dan password yang benar",Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
+                    login(emailTxt,passwordTxt);
                 }
             }
         });
@@ -148,5 +132,33 @@ public class MainActivity extends AppCompatActivity {
                 editEmail.requestFocus(1);
             }
         });
+    }
+
+    private void login(String email, String password){
+        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful() && task.getResult()!=null){
+                    reload();
+                }else{
+                    Toast.makeText(getApplicationContext(),"Mohon periksa kembali email dan password anda",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void reload() {
+        Intent login = new Intent(MainActivity.this, Home.class);
+        startActivity(login);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            reload();
+        }
     }
 }

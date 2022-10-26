@@ -12,10 +12,9 @@
     <string name="txtHelpRegister">Tidak memiliki akun?</string>
     <string name="btnTextRegister">Daftar Akun</string>
 
-    <string name="txtRegister">Daftar</string>
-    <string name="editUsername">Username</string>
-    <string name="editFullname">Full Name</string>
-    <string name="editRepeatPassword">Password</string>
+    <string name="txtRegister">Daftar</string>>
+    <string name="editFullname">Nama Lengkap</string>
+    <string name="editRepeatPassword">Ulangi Password</string>
     <string name="btnRegister">Daftar</string>
     <string name="txtHelpLogin">Sudah memiliki akun?</string>
     <string name="btnTextLogin">Masuk</string>

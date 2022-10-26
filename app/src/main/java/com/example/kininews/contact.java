@@ -1,7 +1,6 @@
 package com.example.kininews;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 public class contact extends AppCompatActivity {
