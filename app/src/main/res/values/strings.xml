@@ -19,4 +19,7 @@
     <string name="btnRegister">Daftar</string>
     <string name="txtHelpLogin">Sudah memiliki akun?</string>
     <string name="btnTextLogin">Masuk</string>
+
+    <string name="btnAccount">Profile</string>
+    <string name="btnContact">Profile</string>
 </resources>

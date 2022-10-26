@@ -18,22 +18,33 @@
             android:paddingStart="-12dp"
             android:paddingEnd="0dp">
             <ImageButton
-                android:id="@+id/btnCancel"
+                android:id="@+id/btnAccount"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_baseline_clear_24"
+                android:src="@drawable/ic_baseline_account_circle_24"
                 android:backgroundTint="@color/secondary"
-                android:contentDescription="@string/desc_cancel"
+                android:contentDescription="@string/btnAccount"
                 />
 
             <ImageView
                 android:id="@+id/imgAppLogo"
                 android:layout_width="60dp"
                 android:layout_height="48dp"
-                android:layout_toEndOf="@id/btnCancel"
+                android:layout_toEndOf="@id/btnAccount"
                 android:src="@drawable/logo"
                 android:layout_marginStart="124dp"
                 android:contentDescription="@string/desc_imgAppLogo"/>
+
+            <ImageButton
+                android:id="@+id/btnContact"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_toEndOf="@id/imgAppLogo"
+                android:src="@drawable/ic_baseline_contact_phone_24"
+                android:backgroundTint="@color/secondary"
+                android:layout_marginStart="132dp"
+                android:contentDescription="@string/btnContact"
+                />
 
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
