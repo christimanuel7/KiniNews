@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,11 +19,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class Register extends AppCompatActivity {
     //MEMBUAT OBJEK DATABASE REFERENCE UNTUK MENGAKSES FIREBASE REALTIME DB
@@ -35,7 +29,6 @@ public class Register extends AppCompatActivity {
     private Button btnRegister,btnClear;
     private EditText  editEmail, editFullName, editPassword, editRepeatPassword;
     private ImageButton btnCancel;
-    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +48,6 @@ public class Register extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mAuth=FirebaseAuth.getInstance();
-        progressDialog=new ProgressDialog(Register.this);
-
-        progressDialog.setTitle("Loading");
-        progressDialog.setMessage("Mohon menunggu sebentar");
-        progressDialog.setCancelable(false);
 
 //        LOGIN REGISTER DAN MASUK KE LOGIN MAIN ACTIVITY
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +104,6 @@ public class Register extends AppCompatActivity {
     }
 
     private void register(String email, String fullName,  String password){
-        progressDialog.show();
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -143,8 +130,8 @@ public class Register extends AppCompatActivity {
     }
 
     private void reload() {
-        Intent login = new Intent(Register.this, MainActivity.class);
-        startActivity(login);
+        Intent regist = new Intent(Register.this, MainActivity.class);
+        startActivity(regist);
     }
 
     @Override

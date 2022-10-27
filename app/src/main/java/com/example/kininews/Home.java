@@ -3,12 +3,10 @@ package com.example.kininews;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,34 +19,20 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Home extends AppCompatActivity {
     private Toolbar toolbar;
-    private Button btnLogout;
     private ImageButton btnAccount, btnContact;
-    private FirebaseUser firebaseUser;
-    private TextView textName;
     private RecyclerView recyclerView;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
         toolbar=findViewById(R.id.toolbar);
-        btnLogout=findViewById(R.id.btnLogout);
         btnAccount=findViewById(R.id.btnAccount);
         btnContact=findViewById(R.id.btnContact);
-        textName=findViewById(R.id.textName);
-
-        firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
 
         setSupportActionBar(toolbar);
-
-        if(firebaseUser!=null){
-            textName.setText(firebaseUser.getDisplayName());
-        }else{
-            textName.setText("Login Gagal");
-        }
 
         btnAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,15 +47,6 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 Intent contact = new Intent(Home.this, Contact.class);
                 startActivity(contact);
-            }
-        });
-
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Intent logout = new Intent(Home.this, MainActivity.class);
-                startActivity(logout);
             }
         });
 

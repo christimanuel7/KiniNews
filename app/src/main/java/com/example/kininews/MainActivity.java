@@ -4,9 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -37,7 +35,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
     private Toolbar toolbar;
     private TextView btnRegister;
@@ -60,15 +57,10 @@ public class MainActivity extends AppCompatActivity {
         btnClear=findViewById(R.id.btnClear);
         btnRegister=findViewById(R.id.btnRegister);
 
-        progressDialog=new ProgressDialog(MainActivity.this);
 
         mAuth=FirebaseAuth.getInstance();
 
         setSupportActionBar(toolbar);
-
-        progressDialog.setTitle("Loading");
-        progressDialog.setMessage("Mohon menunggu sebentar");
-        progressDialog.setCancelable(false);
 
         ImageSlider carousel=findViewById(R.id.carousel);
 

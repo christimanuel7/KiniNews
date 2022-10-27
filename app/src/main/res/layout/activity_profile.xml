@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -36,13 +35,14 @@
                 android:contentDescription="@string/desc_imgAppLogo"/>
 
             <TextView
+                android:id="@+id/txtProfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="32dp"
                 android:layout_toEndOf="@id/imgAppLogo"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="PROFIL"
+                android:text="@string/btnProfil"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 
@@ -56,7 +56,7 @@
         android:src="@drawable/ic_baseline_account_circle_240"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="180dp"
-        android:contentDescription="Foto Profil"
+        android:contentDescription="@string/descFoto"
         />
 
     <TextView
@@ -68,7 +68,7 @@
         android:fontFamily="@font/montserrat_semibold"
         android:textSize="28sp"
         android:layout_marginTop="64dp"
-        android:text="Nama Lengkap"
+        android:text="@string/editFullname"
         />
 
     <TextView
@@ -80,7 +80,7 @@
         android:fontFamily="@font/montserrat_medium"
         android:textSize="20sp"
         android:layout_marginTop="16dp"
-        android:text="email@gmail.com"
+        android:text="@string/txtEmail"
         />
 
     <Button
@@ -94,7 +94,7 @@
         android:layout_marginTop="168dp"
         android:layout_below="@id/txtEmail"
         android:fontFamily="@font/montserrat_bold"
-        android:text="KELUARKAN AKUN"
+        android:text="@string/btnLogout"
         android:textSize="20sp"
         android:textColor="@color/white"/>
 

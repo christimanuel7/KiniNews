@@ -19,8 +19,19 @@
     <string name="txtHelpLogin">Sudah memiliki akun?</string>
     <string name="btnTextLogin">Masuk</string>
 
-    <string name="btnAccount">Profile</string>
-    <string name="btnContact">Profile</string>
+    <string name="btnAccount">Akun</string>
+    <string name="btnContact">Profil</string>
 
     <string name="btnBack">Back Menu</string>
+    <string name="btnProfil">PROFIL</string>
+
+    <string name="descFoto">Foto Profil</string>
+    <string name="txtEmail">email@gmail.com</string>
+    <string name="btnLogout">KELUAR AKUN</string>
+
+    <string name="txtKontak">KONTAK</string>
+    <string name="txtHubungi">HUBUNGI KAMI</string>
+    <string name="txtGmail">GMAIL</string>
+    <string name="txtWA">WHATSAPP</string>
+
 </resources>
