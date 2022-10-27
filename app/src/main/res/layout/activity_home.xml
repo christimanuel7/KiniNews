@@ -49,32 +49,11 @@
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/textName"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleView"
+        tools:listitem="@layout/row"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"
-        android:text="Halo"
-        android:textColor="@color/black"/>
+        android:layout_below="@id/toolbar"/>
 
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textName"
-        android:text="LOGOUT"/>
-
-    <Button
-        android:id="@+id/btnWA"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btnLogout"
-        android:text="HUBUNGI WA"/>
-
-    <Button
-        android:id="@+id/btnEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btnWA"
-        android:text="HUBUNGI EMAIL"/>
 </RelativeLayout>
