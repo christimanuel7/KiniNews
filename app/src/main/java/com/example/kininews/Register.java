@@ -130,8 +130,8 @@ public class Register extends AppCompatActivity {
     }
 
     private void reload() {
-        Intent regist = new Intent(Register.this, MainActivity.class);
-        startActivity(regist);
+        Intent login = new Intent(Register.this, MainActivity.class);
+        startActivity(login);
     }
 
     @Override

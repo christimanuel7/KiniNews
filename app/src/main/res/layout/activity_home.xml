@@ -42,7 +42,7 @@
                 android:layout_toEndOf="@id/imgAppLogo"
                 android:src="@drawable/ic_baseline_contact_phone_24"
                 android:backgroundTint="@color/secondary"
-                android:layout_marginStart="132dp"
+                android:layout_marginStart="128dp"
                 android:contentDescription="@string/btnContact"
                 />
 
