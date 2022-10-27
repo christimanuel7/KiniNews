@@ -1,9 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".profile">
+    tools:context=".Profile">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/secondary"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="-12dp"
+            android:paddingEnd="0dp">
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                android:backgroundTint="@color/secondary"
+                android:contentDescription="@string/btnBack"
+                />
+
+            <ImageView
+                android:id="@+id/imgAppLogo"
+                android:layout_width="60dp"
+                android:layout_height="48dp"
+                android:layout_toEndOf="@id/btnBack"
+                android:src="@drawable/logo"
+                android:layout_marginStart="8dp"
+                android:contentDescription="@string/desc_imgAppLogo"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="24dp"
+                android:layout_toEndOf="@id/imgAppLogo"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="PROFIL"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/imgProfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_account_circle_240"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="180dp"
+        android:contentDescription="Foto Profil"
+        />
+
+    <TextView
+        android:id="@+id/txtNama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgProfil"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/montserrat_semibold"
+        android:textSize="28sp"
+        android:layout_marginTop="64dp"
+        android:text="Nama Lengkap"
+        />
+
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtNama"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/montserrat_medium"
+        android:textSize="20sp"
+        android:layout_marginTop="16dp"
+        android:text="email@gmail.com"
+        />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/red"
+        android:bottomLeftRadius="12dp"
+        android:bottomRightRadius="12dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="168dp"
+        android:layout_below="@id/txtEmail"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="KELUARKAN AKUN"
+        android:textSize="20sp"
+        android:textColor="@color/white"/>
+
+
+</RelativeLayout>

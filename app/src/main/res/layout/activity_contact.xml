@@ -1,10 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".contact">
+    tools:context=".Contact">
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+  <androidx.appcompat.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/secondary"
+      >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="-12dp"
+        android:paddingEnd="0dp">
+      <ImageButton
+          android:id="@+id/btnBack"
+          android:layout_width="wrap_content"
+          android:layout_height="48dp"
+          android:src="@drawable/ic_baseline_arrow_back_24"
+          android:backgroundTint="@color/secondary"
+          android:contentDescription="@string/btnBack"
+          />
+
+      <ImageView
+          android:id="@+id/imgAppLogo"
+          android:layout_width="60dp"
+          android:layout_height="48dp"
+          android:layout_toEndOf="@id/btnBack"
+          android:src="@drawable/logo"
+          android:layout_marginStart="8dp"
+          android:contentDescription="@string/desc_imgAppLogo"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerInParent="true"
+          android:layout_marginStart="24dp"
+          android:layout_toEndOf="@id/imgAppLogo"
+          android:fontFamily="@font/montserrat_bold"
+          android:text="KONTAK"
+          android:textColor="@color/white"
+          android:textSize="24sp" />
+
+    </RelativeLayout>
+  </androidx.appcompat.widget.Toolbar>
+
+  <TextView
+      android:id="@+id/txtHubungiKami"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:fontFamily="@font/montserrat_semibold"
+      android:layout_marginTop="200dp"
+      android:textSize="28sp"
+      android:layout_centerHorizontal="true"
+      android:text="Hubungi Kami"
+      android:textColor="@color/white"
+       />
+
+  <ImageView
+      android:id="@id/imgLogo"
+      android:layout_below="@id/txtHubungiKami"
+      android:layout_width="160dp"
+      android:layout_height="200dp"
+      android:layout_marginTop="40dp"
+      android:layout_centerVertical="true"
+      android:layout_centerHorizontal="true"
+      android:src="@drawable/logo"
+      />
+
+  <Button
+      android:id="@+id/btnGmail"
+      android:layout_width="240dp"
+      android:layout_height="60dp"
+      android:bottomLeftRadius="20dp"
+      android:bottomRightRadius="20dp"
+      android:backgroundTint="@color/youngred"
+      android:layout_below="@id/imgLogo"
+      android:text="G-mail"
+      android:textAllCaps="true"
+      android:textSize="24sp"
+      android:textColor="@color/white"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="64dp"
+      android:drawableLeft="@drawable/gmail"/>
+
+  <Button
+      android:id="@+id/btnWA"
+      android:layout_width="240dp"
+      android:layout_height="60dp"
+      android:bottomLeftRadius="20dp"
+      android:bottomRightRadius="20dp"
+      android:backgroundTint="@color/green"
+      android:layout_below="@id/btnGmail"
+      android:text="Whatsapp"
+      android:textSize="24sp"
+      android:textColor="@color/white"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="16dp"
+      android:drawableLeft="@drawable/whatsapp"/>
+
+  </RelativeLayout>

@@ -21,4 +21,6 @@
 
     <string name="btnAccount">Profile</string>
     <string name="btnContact">Profile</string>
+
+    <string name="btnBack">Back Menu</string>
 </resources>
